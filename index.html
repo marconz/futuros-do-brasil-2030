@@ -67,6 +67,10 @@ a{color:var(--accent-text)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font-weight:700;font-size:16px;background:var(--ink);color:var(--bg);text-decoration:none}
 .btn:hover{opacity:.9}
 .btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn-start{background:var(--accent);color:var(--accent-ink);font-size:20px;padding:18px 44px;box-shadow:0 6px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.btn-start:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 0 var(--ink)}
+.btn-start:active{transform:translateY(4px);box-shadow:0 2px 0 var(--ink)}
+@media (max-width:560px){.btn-start{width:100%}}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn.ghost:hover{border-color:var(--ink)}
 .linkbtn{background:none;border:0;padding:6px 0;color:var(--muted);font-weight:600;text-decoration:underline;text-underline-offset:3px}
@@ -239,8 +243,7 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
       </ol>
       <p class="note">Leva cerca de 4 minutos. Não há resposta certa nem errada.</p>
       <div class="row">
-        <button class="btn" id="startBtn" type="button">Começar</button>
-        <button class="btn ghost" id="resumeBtn" type="button" hidden>Continuar de onde parei</button>
+        <button class="btn btn-start" id="startBtn" type="button">Começar <span aria-hidden="true">→</span></button>
       </div>
       <p class="fine">Não é pesquisa eleitoral nem recomendação de voto. O resultado mostra com quais propostas escritas suas escolhas combinam. Nenhuma resposta sai do seu aparelho.</p>
     </div>
@@ -295,7 +298,8 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
 
   <footer class="disclaimer">
     <p>Fontes: Programa de Governo de Lula (84 páginas) e Diretrizes do Plano de Governo de Flávio Bolsonaro 2027–2030 (76 páginas), conforme registrados pelas candidaturas. As páginas citadas são as dos PDFs oficiais.</p>
-    <p>Protótipo para teste. Não guardamos respostas nem somamos resultados de jogadores.</p>
+    <p>Não guardamos respostas nem somamos resultados de jogadores.</p>
+    <p>Projeto de código aberto, sob licença MIT: pode ser copiado, editado, alterado e até comercializado. <a href="https://github.com/marconz/futuros-do-brasil-2030" target="_blank" rel="noopener">Veja o código no GitHub</a>.</p>
   </footer>
 </div>
 
@@ -385,10 +389,7 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
   function shareUrl(){ return SHARE_URL || location.href.split("#")[0]; }
 
   // ---------- Intro ----------
-  var saved = load();
-  if (saved && Object.keys(saved.answers).length > 0 && Object.keys(saved.answers).length < Q.length) $("resumeBtn").hidden = false;
   $("startBtn").onclick = function(){ state = fresh(); save(); renderPrio(); show("prio"); };
-  $("resumeBtn").onclick = function(){ state = saved; renderQ(); show("play"); };
   $("homeBtn").onclick = function(){ if (location.hash) history.replaceState(null, "", location.pathname + location.search); show("intro"); };
   $("cmpLink").onclick = openCmp;
 

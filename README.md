@@ -34,3 +34,9 @@ O site está publicado em https://futuros-do-brasil-2030.vercel.app, que a Verce
 ## Privacidade
 
 O jogo não guarda respostas nem soma resultados de jogadores. Tudo roda no navegador de quem joga. Não acrescente coleta de respostas: opinião política é dado sensível pela LGPD, e o TSE proíbe enquetes durante a campanha.
+
+## Licença
+
+Código aberto sob a [licença MIT](LICENSE): qualquer pessoa pode copiar, editar, alterar, redistribuir e até comercializar este projeto, desde que mantenha o aviso de licença.
+
+As fotos da pasta `img/` têm licenças de uso livre próprias, e os textos citados vêm dos planos de governo públicos registrados pelas candidaturas.
