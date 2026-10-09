@@ -1,0 +1,598 @@
+<title>Futuros do Brasil 2030</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: uma coluna estreita, tipo cartão de votação; cenas em tipo grande e largo, opções como cédulas. */
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --surface-2:#e3e8ee; --ink:#121821; --muted:#566170; --line:#cfd6df;
+  --accent:#f5c400; --accent-text:#7a5a00; --accent-ink:#121821; --sel:#fff3c4;
+  --lula:#d1232a; --lula-soft:#fde4e4; --flavio:#1f5fbf; --flavio-soft:#e1ebfa; --none:#8a94a3;
+  --display:"Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f141b; --surface:#171e28; --surface-2:#202937; --ink:#e9eef5; --muted:#9aa6b6; --line:#2c3746;
+  --accent:#ffd23f; --accent-text:#ffd23f; --accent-ink:#121821; --sel:#3a3212;
+  --lula:#ff5a5f; --lula-soft:#3d1a1d; --flavio:#5f9bff; --flavio-soft:#17284a; --none:#6b7686; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0f141b; --surface:#171e28; --surface-2:#202937; --ink:#e9eef5; --muted:#9aa6b6; --line:#2c3746;
+  --accent:#ffd23f; --accent-text:#ffd23f; --accent-ink:#121821; --sel:#3a3212;
+  --lula:#ff5a5f; --lula-soft:#3d1a1d; --flavio:#5f9bff; --flavio-soft:#17284a; --none:#6b7686; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);font-size:16px;line-height:1.55;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding-inline:18px;padding-block:0 48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--accent-text)}
+:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}
+.kicker{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* Topo */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.brand{font-family:var(--display);font-stretch:118%;font-weight:800;font-size:15px;letter-spacing:.02em;background:none;border:0;padding:0}
+.brand span{background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:1px 5px;margin-left:2px}
+.toplink{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.toplink:hover{border-color:var(--ink)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font-weight:700;font-size:16px;background:var(--ink);color:var(--bg);text-decoration:none}
+.btn:hover{opacity:.9}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.linkbtn{background:none;border:0;padding:6px 0;color:var(--muted);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* Intro */
+.hero{display:grid;gap:22px;padding-block:8px 8px}
+.year{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(84px,24vw,168px);line-height:.82;letter-spacing:-.02em;color:var(--ink)}
+.year span{color:var(--accent);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill}
+/* Letreiro 2030 como máscara sobre fotos que trocam rápido */
+.mask-hero{width:100vw;margin-left:calc(50% - 50vw);display:flex;flex-direction:column;align-items:center;gap:10px;overflow:hidden}
+.mask-word{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:30vw;line-height:.86;letter-spacing:-.025em;white-space:nowrap;
+  color:var(--ink);background-color:var(--ink);background-size:cover;background-position:50% 50%;background-repeat:no-repeat;user-select:none}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .mask-word{color:transparent;-webkit-background-clip:text;background-clip:text}
+}
+.mask-word.pan{animation:pan 7s ease-in-out infinite alternate}
+@keyframes pan{from{background-position:30% 45%}to{background-position:70% 55%}}
+.mask-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;width:100%;max-width:720px;padding-inline:18px}
+.mask-cap{font-family:var(--display);font-stretch:118%;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);min-height:1.4em}
+.mask-cap b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:0;background:var(--accent)}
+.speed{display:flex;gap:6px;flex-wrap:wrap}
+.speed .chip{font-size:13px;padding:5px 11px}
+.hero h1{font-stretch:100%;font-weight:800;font-size:clamp(30px,6.4vw,46px)}
+.hero .lede{font-size:18px;color:var(--muted);max-width:56ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.fact b{display:block;font-family:var(--display);font-stretch:115%;font-size:24px;font-weight:800}
+.fact span{font-size:13px;color:var(--muted)}
+.how{list-style:none;counter-reset:how;margin:0;padding:0;display:grid;gap:12px}
+.how li{counter-increment:how;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 16px 60px;font-size:16px}
+.how li::before{content:counter(how);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-family:var(--display);font-weight:800;display:grid;place-items:center}
+.how b{display:block;font-size:17px;margin-bottom:2px}
+.fine{font-size:13px;color:var(--muted);max-width:60ch}
+
+/* Prioridades */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-block:20px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 16px;font-weight:600;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:disabled{opacity:.4;cursor:not-allowed}
+
+/* Jogo */
+.progress{display:grid;gap:8px;margin-bottom:26px}
+.progress .meta{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);font-weight:600}
+.bar{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .35s ease}
+.scene{font-family:var(--display);font-stretch:100%;font-weight:700;font-size:clamp(23px,4.6vw,31px);line-height:1.18;margin-bottom:24px}
+.options{display:grid;gap:14px}
+.opt{position:relative;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:20px 20px 20px 20px;display:grid;gap:8px;transition:border-color .15s, background .15s, transform .15s}
+.opt:hover{border-color:var(--ink)}
+.opt .lbl{justify-self:start;font-family:var(--display);font-stretch:118%;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);border-radius:4px;padding:2px 8px}
+.opt p{font-size:17px;line-height:1.5}
+.opt.chosen{background:var(--sel);border-color:var(--accent)}
+.opt.chosen::after{content:"✓";position:absolute;top:14px;right:16px;font-weight:800;color:var(--accent-text)}
+.below{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.alt{display:flex;gap:10px;flex-wrap:wrap}
+.altbtn{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:15px}
+.altbtn:hover{border-color:var(--ink)}
+.altbtn[aria-pressed="true"]{background:var(--sel);border-color:var(--accent)}
+.pill.b{background:var(--sel);color:var(--accent-text)}
+
+/* Carta Você sabia */
+.know{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;display:grid;gap:14px}
+.know .tag{display:inline-flex;align-self:start;width:max-content;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:4px 10px;font-family:var(--display);font-stretch:115%;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.know h2{font-stretch:100%;font-weight:700;font-size:clamp(22px,4.4vw,28px);line-height:1.22}
+.src{font-size:13px;color:var(--muted)}
+
+/* Resultado */
+.result-head{display:grid;gap:14px;margin-bottom:26px}
+.result-head h1{font-size:clamp(28px,6vw,42px);font-weight:800}
+.result-head h1 em{font-style:normal}
+.who-lula{color:var(--lula)} .who-flavio{color:var(--flavio)}
+.split{display:grid;gap:8px;margin-block:6px 4px}
+.split .track{display:flex;height:44px;border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.split .seg{display:flex;align-items:center;padding-inline:12px;font-family:var(--display);font-stretch:112%;font-weight:800;font-size:16px;color:#fff;white-space:nowrap;min-width:0;transition:width .6s ease}
+.split .seg.l{background:var(--lula);justify-content:flex-start}
+.split .seg.f{background:var(--flavio);justify-content:flex-end}
+.split .legend{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.section{margin-top:38px;display:grid;gap:14px}
+.section > h2{font-size:22px;font-weight:800;font-stretch:108%}
+.arealist{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.arearow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
+.arearow:first-child{border-top:0}
+.arearow .nm{font-weight:600}
+.arearow .nm small{color:var(--muted);font-weight:500;margin-left:6px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;white-space:nowrap}
+.pill.l{background:var(--lula-soft);color:var(--lula)}
+.pill.f{background:var(--flavio-soft);color:var(--flavio)}
+.pill.n{background:var(--surface-2);color:var(--muted)}
+.reveal{display:grid;gap:10px}
+details.rq{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0}
+details.rq summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+details.rq summary::-webkit-details-marker{display:none}
+details.rq summary .q{font-weight:600}
+details.rq summary .q small{display:block;color:var(--muted);font-weight:500;font-size:13px}
+details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
+.rv{border-left:4px solid var(--line);padding:6px 0 6px 12px;display:grid;gap:4px}
+.rv.l{border-color:var(--lula)} .rv.f{border-color:var(--flavio)}
+.rv .who{font-size:13px;font-weight:700}
+.rv.l .who{color:var(--lula)} .rv.f .who{color:var(--flavio)}
+.rv .mine{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--surface-2);border-radius:4px;padding:2px 6px;margin-left:6px}
+.rv p{font-size:15px}
+.note{font-size:14px;color:var(--muted)}
+.share{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:14px}
+.share textarea{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;font-size:15px;background:var(--bg);color:var(--ink)}
+.toggle{display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600}
+.toggle input{width:20px;height:20px;accent-color:var(--accent)}
+.sharebtns{display:flex;flex-wrap:wrap;gap:10px}
+.sharebtns a,.sharebtns button{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.sharebtns a:hover,.sharebtns button:hover{border-color:var(--ink)}
+.status{font-size:14px;color:var(--accent-text);font-weight:600;min-height:1.4em}
+.disclaimer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:8px}
+
+/* Comparativo */
+.cmp-head{display:grid;gap:12px;margin-bottom:22px}
+.cmp-head h1{font-size:clamp(28px,6vw,40px);font-weight:800}
+.cmp-tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);display:grid;gap:10px;margin-bottom:8px}
+.scroller{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.scroller .chip{white-space:nowrap;font-size:14px;padding:7px 13px}
+.cmp-sec{padding-top:26px;display:grid;gap:12px;scroll-margin-top:120px}
+.cmp-sec h2{font-size:24px;font-weight:800;font-stretch:108%}
+.cmp-sec .lead{color:var(--muted)}
+.cmp-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px}
+.cmp-row .hd{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cmp-row .hd h3{font-family:var(--body);font-size:17px;font-weight:700}
+.cmp-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cmp-col{border-top:3px solid var(--line);padding-top:8px;display:grid;gap:4px;min-width:0}
+.cmp-col.l{border-color:var(--lula)} .cmp-col.f{border-color:var(--flavio)}
+.cmp-col .who{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.cmp-col.l .who{color:var(--lula)} .cmp-col.f .who{color:var(--flavio)}
+.cmp-col p{font-size:15px}
+.cmp-col p.empty{color:var(--muted);font-style:italic}
+.rel{border-radius:6px;padding:3px 9px;font-size:12px;font-weight:700;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.rel.C{background:var(--sel);color:var(--accent-text)}
+.rel.D{background:var(--ink);color:var(--bg)}
+@media (max-width:560px){
+  .cmp-cols{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .opt{padding:18px 16px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+.fade{animation:fade .28s ease both}
+@keyframes fade{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="homeBtn" type="button">Futuros do Brasil <span>2030</span></button>
+    <button class="toplink" id="cmpLink" type="button">Comparativo</button>
+  </header>
+
+  <!-- INTRO -->
+  <section id="intro" class="fade">
+    <div class="hero">
+      <div class="mask-hero">
+        <div class="mask-word" id="maskWord" aria-hidden="true">2030</div>
+        <div class="mask-meta">
+          <p class="mask-cap" id="maskCap" aria-hidden="true"><b></b>Brasil</p>
+          <button type="button" class="chip" id="maskPause" aria-pressed="false">Pausar imagens</button>
+        </div>
+      </div>
+      <h1>Que Brasil você quer daqui a quatro anos?</h1>
+      <p class="lede">Um jogo para descobrir com qual projeto de país as suas escolhas combinam. Tudo o que aparece aqui foi tirado dos planos de governo oficiais de Lula e de Flávio Bolsonaro, os dois candidatos do segundo turno.</p>
+      <ol class="how">
+        <li><b>Escolha seus temas.</b> Marque até três assuntos que mais importam para você. As respostas sobre eles valem o dobro.</li>
+        <li><b>Leia a cena e escolha um futuro.</b> São 12 cenas do Brasil em 2030. Cada uma mostra dois futuros possíveis, um de cada plano, sem dizer de quem é. Escolha o que você prefere, ou responda “Os dois” ou “Nenhum dos dois”.</li>
+        <li><b>Veja o resultado.</b> No fim, você descobre com qual plano suas escolhas mais combinam, tema por tema, e de onde veio cada futuro, com a página do plano.</li>
+      </ol>
+      <p class="note">Leva cerca de 4 minutos. Não há resposta certa nem errada.</p>
+      <div class="row">
+        <button class="btn" id="startBtn" type="button">Começar</button>
+        <button class="btn ghost" id="resumeBtn" type="button" hidden>Continuar de onde parei</button>
+      </div>
+      <p class="fine">Não é pesquisa eleitoral nem recomendação de voto. O resultado mostra com quais propostas escritas suas escolhas combinam. Nenhuma resposta sai do seu aparelho.</p>
+    </div>
+  </section>
+
+  <!-- PRIORIDADES -->
+  <section id="prio" hidden>
+    <p class="kicker">Antes de começar</p>
+    <h1 style="font-size:clamp(26px,5.4vw,36px);font-weight:800;margin-top:8px">Quais temas mais pesam para você?</h1>
+    <p class="note" style="margin-top:10px">Escolha até três. As respostas sobre eles valem o dobro no resultado.</p>
+    <div class="chips" id="prioChips" role="group" aria-label="Temas prioritários"></div>
+    <div class="row">
+      <button class="btn" id="prioGo" type="button">Pular</button>
+      <span class="note" id="prioCount">0 de 3</span>
+    </div>
+  </section>
+
+  <!-- JOGO -->
+  <section id="play" hidden>
+    <div class="progress">
+      <div class="meta"><span id="pCount">Cena 1 de 12</span><span id="pArea"></span></div>
+      <div class="bar"><i id="pBar" style="width:0%"></i></div>
+    </div>
+    <div id="qBox"></div>
+    <div class="below">
+      <button class="linkbtn" id="backBtn" type="button">Voltar</button>
+      <div class="alt"><button class="altbtn" id="bothBtn" type="button" aria-pressed="false">Os dois</button><button class="altbtn" id="noneBtn" type="button" aria-pressed="false">Nenhum dos dois</button></div>
+    </div>
+  </section>
+
+  <!-- VOCÊ SABIA -->
+  <section id="know" hidden>
+    <div class="progress">
+      <div class="meta"><span id="kCount"></span><span>Pausa</span></div>
+      <div class="bar"><i id="kBar" style="width:0%"></i></div>
+    </div>
+    <div class="know fade">
+      <span class="tag">Você sabia?</span>
+      <p class="note" id="knowIntro">Uma pausa entre as cenas para mostrar um ponto em que os dois planos concordam.</p>
+      <h2 id="knowText"></h2>
+      <p class="src" id="knowSrc"></p>
+      <p class="note">Isso não conta para o seu resultado. A próxima cena vem em seguida.</p>
+      <div><button class="btn" id="knowGo" type="button">Continuar</button></div>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section id="result" hidden></section>
+
+  <!-- COMPARATIVO -->
+  <section id="cmp" hidden></section>
+
+  <footer class="disclaimer">
+    <p>Fontes: Programa de Governo de Lula (84 páginas) e Diretrizes do Plano de Governo de Flávio Bolsonaro 2027–2030 (76 páginas), conforme registrados pelas candidaturas. As páginas citadas são as dos PDFs oficiais.</p>
+    <p>Protótipo para teste. Não guardamos respostas nem somamos resultados de jogadores.</p>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* Letreiro-máscara: fotos de temas dos planos e de futuros possíveis passando dentro do "2030". */
+(function(){
+  "use strict";
+  var word = document.getElementById("maskWord"), cap = document.getElementById("maskCap");
+  var FR = [
+    ["img/bandeira.webp","Brasil"],["img/cidade.webp","Moradia e cidades"],["img/saude.webp","Saúde"],
+    ["#009c3b","Brasil"],["img/feira.webp","Comida na mesa"],["img/transporte.webp","Transporte"],
+    ["img/floresta.webp","Floresta e clima"],["#ffdf00","Brasil"],["img/idosos.webp","Cuidado com quem envelhece"],
+    ["img/tecnologia.webp","Tecnologia"],["img/cultura.webp","Cultura"],["#002776","Brasil"],
+    ["img/rio.webp","Turismo"],["img/lazer.webp","Esporte e lazer"],["img/arte-urbana.webp","Cidades e arte"]
+  ];
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var i = 0, ms = 450, timer = null;
+
+  function fit(){
+    word.style.fontSize = "100px";
+    var target = Math.min(document.documentElement.clientWidth - 24, 1400);
+    var w = word.getBoundingClientRect().width || 1;
+    word.style.fontSize = Math.floor(100 * target / w) + "px";
+  }
+  function paint(k){
+    var f = FR[k];
+    if (f[0].charAt(0) === "#") { word.style.backgroundImage = "linear-gradient(" + f[0] + "," + f[0] + ")"; }
+    else { word.style.backgroundImage = "url(" + f[0] + ")"; }
+    cap.lastChild.nodeValue = f[1];
+    cap.firstChild.style.background = f[0].charAt(0) === "#" ? f[0] : "var(--accent)";
+  }
+  function step(){ i = (i + 1) % FR.length; paint(i); }
+  function play(){ clearInterval(timer); timer = null; if (ms > 0 && !reduce) timer = setInterval(step, ms); }
+
+  // pré-carrega as imagens antes de começar a trocar
+  var srcs = FR.filter(function(f){ return f[0].charAt(0) !== "#"; }).map(function(f){ return f[0]; });
+  var left = srcs.length, started = false;
+  function go(){ if (started) return; started = true; play(); }
+  srcs.forEach(function(src){ var im = new Image(); im.onload = im.onerror = function(){ if (--left === 0) go(); }; im.src = src; });
+  setTimeout(go, 3000);
+
+  paint(0);
+  if (!reduce) word.classList.add("pan");
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  var to; window.addEventListener("resize", function(){ clearTimeout(to); to = setTimeout(fit, 120); });
+
+  var pauseBtn = document.getElementById("maskPause"), paused = false;
+  if (reduce) pauseBtn.hidden = true;
+  pauseBtn.onclick = function(){
+    paused = !paused;
+    ms = paused ? 0 : 450; play();
+    word.classList.toggle("pan", !paused && !reduce);
+    pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+    pauseBtn.textContent = paused ? "Retomar imagens" : "Pausar imagens";
+  };
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var D = window.FUTUROS;
+  var Q = D.questions;
+  var NAME = { L: "Lula", F: "Flávio Bolsonaro" };
+  var SHARE_URL = "https://claude.ai/artifact/WocV3jgHtbiNo4Phk1hCeZ"; // trocar pelo domínio final em produção
+  var KEY = "futuros2030-v1";
+
+  var state = fresh();
+  function fresh(){
+    var order = {};
+    Q.forEach(function(q){ order[q.id] = Math.random() < 0.5 ? ["L","F"] : ["F","L"]; });
+    return { prio: [], answers: {}, order: order, idx: 0 };
+  }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+  function load(){ try{ var s = JSON.parse(localStorage.getItem(KEY) || "null"); if(s && s.order && s.answers) return s; }catch(e){} return null; }
+  function clearSave(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+
+  var $ = function(id){ return document.getElementById(id); };
+  var screens = ["intro","prio","play","know","result","cmp"];
+  function show(id){
+    screens.forEach(function(s){ $(s).hidden = (s !== id); });
+    var el = $(id); el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
+    window.scrollTo(0,0);
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function shareUrl(){ return SHARE_URL || location.href.split("#")[0]; }
+
+  // ---------- Intro ----------
+  var saved = load();
+  if (saved && Object.keys(saved.answers).length > 0 && Object.keys(saved.answers).length < Q.length) $("resumeBtn").hidden = false;
+  $("startBtn").onclick = function(){ state = fresh(); save(); renderPrio(); show("prio"); };
+  $("resumeBtn").onclick = function(){ state = saved; renderQ(); show("play"); };
+  $("homeBtn").onclick = function(){ if (location.hash) history.replaceState(null, "", location.pathname + location.search); show("intro"); };
+  $("cmpLink").onclick = openCmp;
+
+  // ---------- Prioridades ----------
+  function renderPrio(){
+    var box = $("prioChips"); box.innerHTML = "";
+    Q.forEach(function(q){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.id = "prio-" + q.id; b.textContent = q.area;
+      b.setAttribute("aria-pressed", state.prio.indexOf(q.id) > -1 ? "true" : "false");
+      b.onclick = function(){
+        var i = state.prio.indexOf(q.id);
+        if (i > -1) state.prio.splice(i,1); else if (state.prio.length < 3) state.prio.push(q.id);
+        renderPrio(); save();
+      };
+      box.appendChild(b);
+    });
+    var n = state.prio.length;
+    Array.prototype.forEach.call(box.children, function(b){ if (b.getAttribute("aria-pressed") !== "true") b.disabled = n >= 3; });
+    $("prioCount").textContent = n + " de 3";
+    $("prioGo").textContent = n ? "Continuar" : "Pular";
+  }
+  $("prioGo").onclick = function(){ state.idx = 0; save(); renderQ(); show("play"); };
+
+  // ---------- Perguntas ----------
+  var locked = false;
+  function renderQ(){
+    var q = Q[state.idx];
+    $("pCount").textContent = "Cena " + (state.idx+1) + " de " + Q.length;
+    $("pArea").textContent = q.area + (state.prio.indexOf(q.id) > -1 ? " · vale 2×" : "");
+    $("pBar").style.width = (state.idx / Q.length * 100) + "%";
+    var ord = state.order[q.id], cur = state.answers[q.id];
+    var html = '<h2 class="scene">' + esc(q.scene) + '</h2><div class="options">';
+    ord.forEach(function(side, i){
+      html += '<button type="button" class="opt' + (cur === side ? " chosen" : "") + '" data-side="' + side + '" id="opt-' + q.id + '-' + i + '">' +
+              '<span class="lbl">Futuro ' + (i === 0 ? "A" : "B") + '</span><p>' + esc(q[side].t) + '</p></button>';
+    });
+    html += '</div>';
+    var box = $("qBox"); box.innerHTML = html;
+    box.classList.remove("fade"); void box.offsetWidth; box.classList.add("fade");
+    Array.prototype.forEach.call(box.querySelectorAll(".opt"), function(b){
+      b.onclick = function(){ choose(b.getAttribute("data-side"), b); };
+    });
+    $("backBtn").style.visibility = state.idx === 0 ? "hidden" : "visible";
+    $("noneBtn").setAttribute("aria-pressed", cur === "N" ? "true" : "false");
+    $("bothBtn").setAttribute("aria-pressed", cur === "B" ? "true" : "false");
+    locked = false;
+  }
+  function choose(side, btn){
+    if (locked) return; locked = true;
+    var q = Q[state.idx];
+    state.answers[q.id] = side; save();
+    if (btn) { Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(o){ o.classList.remove("chosen"); }); btn.classList.add("chosen"); }
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setTimeout(next, btn && !reduce ? 320 : 0);
+  }
+  function next(){
+    var q = Q[state.idx];
+    if (D.cards[q.id]) { showCard(D.cards[q.id]); return; }
+    advance();
+  }
+  function advance(){
+    if (state.idx < Q.length - 1) { state.idx++; save(); renderQ(); show("play"); }
+    else { save(); renderResult(); show("result"); }
+  }
+  function showCard(c){
+    $("knowText").textContent = c.t;
+    $("knowSrc").textContent = "Onde está escrito: plano de Lula, " + c.L + " · plano de Flávio Bolsonaro, " + c.F;
+    $("kCount").textContent = "Cena " + (state.idx+1) + " de " + Q.length + " respondida";
+    $("kBar").style.width = ((state.idx+1) / Q.length * 100) + "%";
+    show("know");
+  }
+  $("knowGo").onclick = advance;
+  $("noneBtn").onclick = function(){ choose("N", null); };
+  $("bothBtn").onclick = function(){ choose("B", null); };
+  $("backBtn").onclick = function(){ if (state.idx > 0) { state.idx--; save(); renderQ(); } };
+
+  // ---------- Pontuação ----------
+  function score(st){
+    var s = { L:0, F:0, N:0, B:0, perArea:[] };
+    Q.forEach(function(q){
+      var a = st.answers[q.id], w = st.prio.indexOf(q.id) > -1 ? 2 : 1;
+      if (a === "L") s.L += w; else if (a === "F") s.F += w; else if (a === "B") { s.L += w/2; s.F += w/2; s.B++; } else s.N++;
+      s.perArea.push({ q:q, a:a || "N", prio: w === 2 });
+    });
+    var t = s.L + s.F;
+    s.pctL = t ? Math.round(s.L / t * 100) : 0;
+    s.pctF = t ? 100 - s.pctL : 0;
+    s.winner = !t ? null : (s.L > s.F ? "L" : (s.F > s.L ? "F" : "T"));
+    return s;
+  }
+  window.__futurosScore = score; // usado em teste
+
+  // ---------- Resultado ----------
+  function renderResult(){
+    var s = score(state);
+    var h = '';
+    h += '<div class="result-head"><p class="kicker">Seu Brasil 2030</p>';
+    if (s.winner === "L" || s.winner === "F") {
+      var cls = s.winner === "L" ? "who-lula" : "who-flavio";
+      h += '<h1>Suas escolhas estão mais próximas das propostas de <em class="' + cls + '">' + NAME[s.winner] + '</em></h1>';
+    } else if (s.winner === "T") {
+      h += '<h1>Empate: suas escolhas se dividiram igualmente entre os dois planos</h1>';
+    } else {
+      h += '<h1>Você não escolheu nenhum dos futuros propostos</h1><p class="note">Sem escolhas, não há alinhamento a mostrar. Você pode jogar de novo ou ver o comparativo completo.</p>';
+    }
+    if (s.winner) {
+      h += '<div class="split" aria-label="Alinhamento: Lula ' + s.pctL + '%, Flávio Bolsonaro ' + s.pctF + '%">' +
+           '<div class="track"><div class="seg l" style="width:' + s.pctL + '%">' + (s.pctL >= 12 ? s.pctL + '%' : '') + '</div>' +
+           '<div class="seg f" style="width:' + s.pctF + '%">' + (s.pctF >= 12 ? s.pctF + '%' : '') + '</div></div>' +
+           '<div class="legend"><span class="who-lula">Lula</span><span class="who-flavio">Flávio Bolsonaro</span></div></div>';
+      var extra = [];
+      if (s.B) extra.push(s.B + (s.B === 1 ? ' resposta “os dois” deu' : ' respostas “os dois” deram') + ' meio ponto a cada lado');
+      if (s.N) extra.push(s.N + (s.N === 1 ? ' resposta “nenhum dos dois” não entrou' : ' respostas “nenhum dos dois” não entraram') + ' na conta');
+      h += '<p class="note">Percentual das suas escolhas, com peso dobrado nos temas prioritários' + (extra.length ? '. ' + extra.join('; ') : '') + '.</p>';
+    }
+    h += '</div>';
+
+    h += '<div class="section"><h2>Tema por tema</h2><div class="arealist">';
+    s.perArea.forEach(function(r){
+      var pill = r.a === "L" ? '<span class="pill l">Lula</span>' : r.a === "F" ? '<span class="pill f">Flávio Bolsonaro</span>' : r.a === "B" ? '<span class="pill b">Os dois</span>' : '<span class="pill n">Nenhum</span>';
+      h += '<div class="arearow"><span class="nm">' + esc(r.q.area) + (r.prio ? '<small>prioridade</small>' : '') + '</span>' + pill + '</div>';
+    });
+    h += '</div></div>';
+
+    var fin = D.cards.final;
+    h += '<div class="section"><div class="know"><span class="tag">Você sabia?</span><h2>' + esc(fin.t) + '</h2><p class="src">Lula, ' + fin.L + ' · Flávio Bolsonaro, ' + fin.F + '</p></div></div>';
+
+    h += '<div class="section"><h2>Suas respostas, reveladas</h2><p class="note">Toque em cada cena para ver de qual plano veio cada futuro.</p><div class="reveal">';
+    Q.forEach(function(q){
+      var a = state.answers[q.id] || "N";
+      var pill = a === "L" ? '<span class="pill l">Lula</span>' : a === "F" ? '<span class="pill f">Flávio B.</span>' : a === "B" ? '<span class="pill b">Os dois</span>' : '<span class="pill n">Nenhum</span>';
+      h += '<details class="rq" id="rq-' + q.id + '"><summary><span class="q">' + esc(q.scene) + '<small>' + esc(q.area) + '</small></span>' + pill + '</summary><div class="body">';
+      ["L","F"].forEach(function(side){
+        h += '<div class="rv ' + side.toLowerCase() + '"><span class="who">' + NAME[side] + ' · ' + q[side].p + ((a === side || a === "B") ? '<span class="mine">Sua escolha</span>' : '') + '</span><p>' + esc(q[side].t) + '</p></div>';
+      });
+      if (q.note) h += '<p class="note">' + esc(q.note) + '</p>';
+      h += '</div></details>';
+    });
+    h += '</div></div>';
+
+    h += '<div class="section"><h2>Compartilhe</h2><div class="share">' +
+         '<label class="toggle" for="incCand"><input type="checkbox" id="incCand"> Incluir o candidato no texto</label>' +
+         '<textarea id="shareText" aria-label="Texto para compartilhar"></textarea>' +
+         '<div class="sharebtns"><a id="shWa" target="_blank" rel="noopener">WhatsApp</a><a id="shX" target="_blank" rel="noopener">X</a><a id="shTg" target="_blank" rel="noopener">Telegram</a><button type="button" id="shCopy">Copiar texto</button></div>' +
+         '<p class="status" id="shStatus" aria-live="polite"></p></div></div>';
+
+    h += '<div class="section"><div class="row"><button class="btn" type="button" id="toCmp">Ver o comparativo completo</button><button class="btn ghost" type="button" id="again">Jogar de novo</button></div></div>';
+
+    $("result").innerHTML = h;
+    $("incCand").onchange = function(){ updateShare(s); };
+    $("toCmp").onclick = openCmp;
+    $("again").onclick = function(){ clearSave(); state = fresh(); renderPrio(); show("prio"); };
+    $("shCopy").onclick = function(){ copy($("shareText").value, $("shStatus")); };
+    $("shareText").oninput = function(){ setLinks($("shareText").value); };
+    updateShare(s);
+  }
+  function updateShare(s){
+    var pr = state.prio.map(function(id){ return Q.filter(function(q){ return q.id === id; })[0].area.toLowerCase(); });
+    var t = "Fiz o Futuros do Brasil 2030: escolhi entre dois futuros possíveis em 12 cenas tiradas dos planos de governo do segundo turno.";
+    if (pr.length) t += " Meus temas prioritários: " + listPt(pr) + ".";
+    if ($("incCand").checked && (s.winner === "L" || s.winner === "F")) t += " Minhas escolhas ficaram mais próximas das propostas de " + NAME[s.winner] + " (" + (s.winner === "L" ? s.pctL : s.pctF) + "%).";
+    t += " Descubra o seu: " + shareUrl();
+    $("shareText").value = t; setLinks(t);
+  }
+  function listPt(a){ return a.length < 2 ? a.join("") : a.slice(0,-1).join(", ") + " e " + a[a.length-1]; }
+  function setLinks(t){
+    var e = encodeURIComponent(t);
+    $("shWa").href = "https://wa.me/?text=" + e;
+    $("shX").href = "https://twitter.com/intent/tweet?text=" + e;
+    $("shTg").href = "https://t.me/share/url?url=" + encodeURIComponent(shareUrl()) + "&text=" + encodeURIComponent(t.replace(" " + shareUrl(), ""));
+  }
+  function copy(text, statusEl){
+    function ok(){ statusEl.textContent = "Texto copiado."; }
+    function fail(){ statusEl.textContent = "Não deu para copiar automaticamente. Selecione o texto e copie."; }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, function(){ fallbackCopy(text) ? ok() : fail(); });
+      else fallbackCopy(text) ? ok() : fail();
+    } catch(e){ fallbackCopy(text) ? ok() : fail(); }
+  }
+  function fallbackCopy(text){
+    try { var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); var r = document.execCommand("copy"); document.body.removeChild(ta); return r; } catch(e){ return false; }
+  }
+
+  // ---------- Comparativo ----------
+  var REL = { D:"Divergem", C:"Convergem", P:"Em parte", U:"Só um plano trata" };
+  var cmpFilter = "all";
+  function openCmp(){
+    if (location.hash !== "#comparativo") history.replaceState(null, "", "#comparativo");
+    renderCmp(); show("cmp");
+  }
+  function renderCmp(){
+    var counts = { D:0, C:0, P:0, U:0 }, total = 0;
+    D.matrix.forEach(function(s){ s.rows.forEach(function(r){ counts[r[3]]++; total++; }); });
+    var h = '<div class="cmp-head"><p class="kicker">Comparativo</p><h1>O que cada plano propõe, tema por tema</h1>' +
+      '<p class="note">' + total + ' temas em ' + D.matrix.length + ' áreas, lado a lado, com a página de cada plano. ' +
+      counts.D + ' divergem, ' + counts.C + ' convergem, ' + counts.P + ' convergem em parte e ' + counts.U + ' aparecem em só um dos planos. Quando um plano não trata de um tema, isso não quer dizer que o candidato seja contra.</p>' +
+      '<div class="row"><button class="btn ghost" type="button" id="cmpShare">Copiar link do comparativo</button><a class="btn ghost" id="cmpWa" target="_blank" rel="noopener">Enviar por WhatsApp</a></div><p class="status" id="cmpStatus" aria-live="polite"></p></div>';
+    h += '<div class="cmp-tools"><div class="scroller" role="group" aria-label="Filtrar por relação">';
+    [["all","Todos"],["D","Divergem"],["C","Convergem"],["P","Em parte"],["U","Só um plano"]].forEach(function(f){
+      h += '<button type="button" class="chip" id="flt-' + f[0] + '" data-f="' + f[0] + '" aria-pressed="' + (cmpFilter === f[0]) + '">' + f[1] + '</button>';
+    });
+    h += '</div><div class="scroller" role="navigation" aria-label="Áreas">';
+    D.matrix.forEach(function(s){ h += '<button type="button" class="chip" id="nav-' + s.id + '" data-go="' + s.id + '">' + esc(s.name) + '</button>'; });
+    h += '</div></div>';
+    D.matrix.forEach(function(s){
+      var rows = s.rows.filter(function(r){ return cmpFilter === "all" || r[3] === cmpFilter; });
+      if (!rows.length) return;
+      h += '<div class="cmp-sec" id="sec-' + s.id + '"><h2>' + esc(s.name) + '</h2><p class="lead">' + esc(s.lead) + '</p>';
+      rows.forEach(function(r){
+        h += '<div class="cmp-row"><div class="hd"><h3>' + esc(r[0]) + '</h3><span class="rel ' + r[3] + '">' + REL[r[3]] + '</span></div><div class="cmp-cols">' +
+             col("l", "Lula", r[1]) + col("f", "Flávio Bolsonaro", r[2]) + '</div></div>';
+      });
+      h += '</div>';
+    });
+    h += '<div class="section"><div class="row"><button class="btn" type="button" id="cmpPlay">Jogar o Futuros do Brasil 2030</button></div></div>';
+    $("cmp").innerHTML = h;
+    Array.prototype.forEach.call($("cmp").querySelectorAll("[data-f]"), function(b){ b.onclick = function(){ cmpFilter = b.getAttribute("data-f"); renderCmp(); }; });
+    Array.prototype.forEach.call($("cmp").querySelectorAll("[data-go]"), function(b){ b.onclick = function(){ var t = $("sec-" + b.getAttribute("data-go")); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); else { cmpFilter = "all"; renderCmp(); $("sec-" + b.getAttribute("data-go")).scrollIntoView(); } }; });
+    var link = shareUrl() + "#comparativo";
+    $("cmpShare").onclick = function(){ copy(link, $("cmpStatus")); };
+    $("cmpWa").href = "https://wa.me/?text=" + encodeURIComponent("O que Lula e Flávio Bolsonaro propõem em cada tema, lado a lado, com a página de cada plano de governo: " + link);
+    $("cmpPlay").onclick = function(){ history.replaceState(null, "", location.pathname + location.search); state = fresh(); save(); renderPrio(); show("prio"); };
+  }
+  function col(c, who, txt){
+    var empty = /^Não trata$/.test(txt);
+    return '<div class="cmp-col ' + c + '"><span class="who">' + who + '</span><p' + (empty ? ' class="empty"' : '') + '>' + esc(txt) + '</p></div>';
+  }
+
+  if (location.hash === "#comparativo") openCmp();
+  window.addEventListener("hashchange", function(){ if (location.hash === "#comparativo") openCmp(); });
+})();
+</script>
