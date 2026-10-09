@@ -62,6 +62,8 @@ a{color:var(--accent-text)}
 .brand span{background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:1px 5px;margin-left:2px}
 .toplink{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
 .toplink:hover{border-color:var(--ink)}
+.toplink-long{display:none}
+@media (min-width:768px){.toplink-long{display:inline}}
 
 /* Botões */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font-weight:700;font-size:16px;background:var(--ink);color:var(--bg);text-decoration:none}
@@ -221,7 +223,7 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
 <div class="wrap">
   <header class="top">
     <button class="brand" id="homeBtn" type="button">Futuros do Brasil <span>2030</span></button>
-    <button class="toplink" id="cmpLink" type="button">Comparativo</button>
+    <button class="toplink" id="cmpLink" type="button">Comparativo<span class="toplink-long"> entre os planos de governo</span></button>
   </header>
 
   <!-- INTRO -->
@@ -508,6 +510,12 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
     }
     h += '</div>';
 
+    h += '<div class="section"><h2>Compartilhe</h2><div class="share">' +
+         '<label class="toggle" for="incCand"><input type="checkbox" id="incCand"> Incluir o candidato no texto</label>' +
+         '<textarea id="shareText" aria-label="Texto para compartilhar"></textarea>' +
+         '<div class="sharebtns"><a id="shWa" target="_blank" rel="noopener">WhatsApp</a><a id="shX" target="_blank" rel="noopener">X</a><a id="shTg" target="_blank" rel="noopener">Telegram</a><button type="button" id="shCopy">Copiar texto</button></div>' +
+         '<p class="status" id="shStatus" aria-live="polite"></p></div></div>';
+
     h += '<div class="section"><h2>Tema por tema</h2><div class="arealist">';
     s.perArea.forEach(function(r){
       var pill = r.a === "L" ? '<span class="pill l">Lula</span>' : r.a === "F" ? '<span class="pill f">Flávio Bolsonaro</span>' : r.a === "B" ? '<span class="pill b">Os dois</span>' : '<span class="pill n">Nenhum</span>';
@@ -531,11 +539,6 @@ details.rq .body{padding:0 16px 16px;display:grid;gap:10px}
     });
     h += '</div></div>';
 
-    h += '<div class="section"><h2>Compartilhe</h2><div class="share">' +
-         '<label class="toggle" for="incCand"><input type="checkbox" id="incCand"> Incluir o candidato no texto</label>' +
-         '<textarea id="shareText" aria-label="Texto para compartilhar"></textarea>' +
-         '<div class="sharebtns"><a id="shWa" target="_blank" rel="noopener">WhatsApp</a><a id="shX" target="_blank" rel="noopener">X</a><a id="shTg" target="_blank" rel="noopener">Telegram</a><button type="button" id="shCopy">Copiar texto</button></div>' +
-         '<p class="status" id="shStatus" aria-live="polite"></p></div></div>';
 
     h += '<div class="section"><div class="row"><button class="btn" type="button" id="toCmp">Ver o comparativo completo</button><button class="btn ghost" type="button" id="again">Jogar de novo</button></div></div>';
 
