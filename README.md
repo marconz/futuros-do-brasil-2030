@@ -29,7 +29,7 @@ Abra o arquivo `index.html` no navegador. Não precisa instalar nada.
 
 É um site estático: funciona em Cloudflare Pages, Vercel, Netlify ou GitHub Pages, sem banco de dados.
 
-Antes de publicar no domínio final, troque o link de compartilhamento em `index.html`. Procure por `SHARE_URL` e coloque o endereço do site.
+O site está publicado em https://futuros-do-brasil-2030.vercel.app, que a Vercel atualiza a cada alteração no GitHub. Se mudar de domínio, troque o endereço em `SHARE_URL` e nas etiquetas `og:` no topo do `index.html`.
 
 ## Privacidade
 
